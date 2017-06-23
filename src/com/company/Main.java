@@ -3,30 +3,27 @@ package com.company;
 import java.io.*;
 
 class Main {
-    private static int x = -1;
-    private static int y = -1;
     private static final String caution = "自然数を半角空白区切りで2つ入力してください(ただし、本プログラムでは自然に0は含めないものとする)";
 
     public static void main(String[] args) {
         System.out.println(caution);
-        readInput();
-        System.out.println(doEuclideanAlgorithm(x, y));
+        int[] inputs = readInput();
+        System.out.println(doEuclideanAlgorithm(inputs[0], inputs[1]));
     }
 
-    private static void readInput() {
+    private static int[] readInput() {
         try {
-            while (x <= 0 || y <= 0) {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-                String[] str = bufferedReader.readLine().split(" ");
-                x = Integer.parseInt(str[0]);
-                y = Integer.parseInt(str[1]);
-                if (x <= 0 || y <= 0) {
-                    System.out.println("入力が不適切です。" + caution);
-                }
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            String[] str = bufferedReader.readLine().split(" ");
+            int x = Integer.parseInt(str[0]);
+            int y = Integer.parseInt(str[1]);
+            if (x <= 0 || y <= 0) {
+                throw new Exception("");
             }
+            return new int[]{x, y};
         } catch (Exception e) {
             System.out.println("入力が不適切です。" + caution);
-            readInput();
+            return readInput();
         }
     }
 
