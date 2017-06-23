@@ -7,13 +7,13 @@ class Main {
     private static int y = -1;
     private static final String caution = "自然数を半角空白区切りで2つ入力してください(ただし、本プログラムでは自然に0は含めないものとする)";
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         System.out.println(caution);
         readInput();
         System.out.println(doEuclideanAlgorithm(x, y));
     }
 
-    private static void readInput() throws Exception {
+    private static void readInput() {
         try {
             while (x <= 0 || y <= 0) {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -21,17 +21,12 @@ class Main {
                 x = Integer.parseInt(str[0]);
                 y = Integer.parseInt(str[1]);
                 if (x <= 0 || y <= 0) {
-                    System.out.println("入力が不適切です" + caution);
+                    System.out.println("入力が不適切です。" + caution);
                 }
             }
-        } catch (ArrayIndexOutOfBoundsException ae) {
-            System.out.println("入力が不適切です" + caution);
-            readInput();
-        } catch (NumberFormatException ne) {
-            System.out.println("入力が不適切です" + caution);
-            readInput();
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("入力が不適切です。" + caution);
+            readInput();
         }
     }
 
